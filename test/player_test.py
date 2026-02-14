@@ -15,7 +15,7 @@ class TestPlayerMethods(unittest.TestCase):
 
         player = Player(name=name, uid=uid)
 
-        self.assertEqual(player._name, name)
+        self.assertEqual(player.name, name)
 
     def test_init_uid(self):
         name = "ava"
@@ -23,4 +23,4 @@ class TestPlayerMethods(unittest.TestCase):
 
         player = Player(name=name, uid=uid)
 
-        self.assertEqual(player._uid, uid)
+        self.assertEqual(player.uid, uid)

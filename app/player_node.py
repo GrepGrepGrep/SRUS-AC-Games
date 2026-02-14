@@ -3,10 +3,10 @@ from app.player import Player
 
 class PlayerNode:
     def __init__(self, player=Player):
-        self._next = None
-        self._previous = None
-        self._player = player
-        self.key = self._player._uid
+        self.next = None
+        self.previous = None
+        self.player = player
+        self.key = self.player.uid
 
     def __str__(self):
-        print("NEXT: {} | PREVIOUS: {} | KEY: {}".format(self._next, self._previous, self.key))
+        print("NEXT: {} | PREVIOUS: {} | KEY: {}".format(self.next, self.previous, self.key))
