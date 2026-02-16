@@ -7,8 +7,6 @@ from app.player_list import PlayerList
 class TestPlayerListMethods(unittest.TestCase):
 
     def test_insert_first_populated(self):
-
-
         plist = PlayerList()
         plist.insert_first(Player(_uid=3439, _name="ava"))
         plist.insert_first(Player(_uid=304, _name="steve"))
@@ -23,22 +21,52 @@ class TestPlayerListMethods(unittest.TestCase):
 
         plist.insert_first(Player(_uid=345443, _name="bob"))
 
-
-       # self.assertEqual(plist._first._player._name, "steve")
+        # self.assertEqual(plist._first._player._name, "steve")
         print(plist)
-
 
         self.assertEqual(plist._first.player._name, "bob")
 
         self.assertEqual(plist._last.player._name, "steve")
 
-
     def test_insert_first_empty(self):
         player_ava = Player(_uid=3439, _name="ava")
         plist = PlayerList()
-
 
         self.assertTrue(plist.is_empty())
 
         plist.insert_first(player_ava)
         self.assertEqual(plist._first.player._name, "ava")
+
+    def test_del_first_empty(self):
+        plist = PlayerList()
+        plist.delete_first()
+
+    def test_del_first(self):
+        plist = PlayerList()
+        plist.insert_last(Player(_uid=3439, _name="bob"))
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=304, _name="steve"))
+        print(plist)
+        plist.delete_first()
+        print(plist)
+        self.assertEqual(plist._first.player._name, "ava")
+
+        print("displaying item one")
+        print(plist._first.display())
+
+    def test_del_last_empty(self):
+        plist = PlayerList()
+        plist.delete_last()
+
+    def test_del_last(self):
+        plist = PlayerList()
+        plist.delete_last()
+
+        plist.insert_last(Player(_uid=3439, _name="bob"))
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=304, _name="steve"))
+        print(plist)
+        plist.delete_last()
+        print(plist)
+        print("displaying last item")
+        print(plist._last.display())
