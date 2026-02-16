@@ -17,13 +17,18 @@ class TestPlayerListMethods(unittest.TestCase):
 
     def test_last_populated(self):
         plist = PlayerList()
+
         plist.insert_first(Player(uid=3439, name="ava"))
         plist.insert_last(Player(uid=304, name="steve"))
+
         plist.insert_first(Player(uid=345443, name="bob"))
 
-       # self.assertEqual(plist._first._player._name, "steve")
 
-        self.assertEqual(plist.first.player.name, "ava")
+       # self.assertEqual(plist._first._player._name, "steve")
+        print(plist)
+
+
+        self.assertEqual(plist.first.player.name, "bob")
 
         self.assertEqual(plist.last.player.name, "steve")
 
