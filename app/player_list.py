@@ -34,7 +34,6 @@ class PlayerList:
         player_node.previous = self._last
         self._last = player_node
 
-
     def delete_first(self):
         if self._first is None:
             return
@@ -50,8 +49,6 @@ class PlayerList:
         last.next = None
         self._last = last
 
-
-
     def __str__(self):
         buf = "items: ["
         current = self._first
@@ -63,3 +60,20 @@ class PlayerList:
         buf += " ]"
         return buf
 
+    def delete_from_key(self, key):
+        current = self._first
+
+        while current is not None:
+            if current.player._uid == key:
+                if current == self._first:
+                    self.delete_first()
+                elif current == self._last:
+                    self.delete_last()
+                else:
+                    previous = current.previous
+                    next_1 = current.next
+
+                    previous.next = next_1
+                    next_1.previous = previous
+                return
+            current = current.next
