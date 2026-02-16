@@ -9,4 +9,5 @@ class PlayerNode:
         self.key = self.player.uid
 
     def __str__(self):
-        print("NEXT: {} | PREVIOUS: {} | KEY: {}".format(self.next, self.previous, self.key))
+        return "NEXT: {} | PREVIOUS: {} | KEY: {}".format(self.next, self.previous, self.key)
+
