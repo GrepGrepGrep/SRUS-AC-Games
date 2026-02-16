@@ -6,7 +6,7 @@ class PlayerNode:
         self.next = None
         self.previous = None
         self.player = player
-        self.key = self.player.uid
+        self.key = self.player._uid
 
     def __str__(self):
         return "NEXT: {} | PREVIOUS: {} | KEY: {}".format(self.next, self.previous, self.key)

@@ -10,35 +10,35 @@ class TestPlayerListMethods(unittest.TestCase):
 
 
         plist = PlayerList()
-        plist.insert_first(Player(uid=3439, name="ava"))
-        plist.insert_first(Player(uid=304, name="steve"))
+        plist.insert_first(Player(_uid=3439, _name="ava"))
+        plist.insert_first(Player(_uid=304, _name="steve"))
 
-        self.assertEqual(plist.first.player.name, "steve")
+        self.assertEqual(plist._first.player._name, "steve")
 
     def test_last_populated(self):
         plist = PlayerList()
 
-        plist.insert_first(Player(uid=3439, name="ava"))
-        plist.insert_last(Player(uid=304, name="steve"))
+        plist.insert_first(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=304, _name="steve"))
 
-        plist.insert_first(Player(uid=345443, name="bob"))
+        plist.insert_first(Player(_uid=345443, _name="bob"))
 
 
        # self.assertEqual(plist._first._player._name, "steve")
         print(plist)
 
 
-        self.assertEqual(plist.first.player.name, "bob")
+        self.assertEqual(plist._first.player._name, "bob")
 
-        self.assertEqual(plist.last.player.name, "steve")
+        self.assertEqual(plist._last.player._name, "steve")
 
 
     def test_insert_first_empty(self):
-        player_ava = Player(uid=3439, name="ava")
+        player_ava = Player(_uid=3439, _name="ava")
         plist = PlayerList()
 
 
         self.assertTrue(plist.is_empty())
 
         plist.insert_first(player_ava)
-        self.assertEqual(plist.first.player.name, "ava")
+        self.assertEqual(plist._first.player._name, "ava")
