@@ -70,3 +70,36 @@ class TestPlayerListMethods(unittest.TestCase):
         print(plist)
         print("displaying last item")
         print(plist._last.display())
+
+    def test_del_key_first(self):
+        plist = PlayerList()
+        plist.insert_last(Player(_uid=94, _name="bob"))
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        print(plist)
+        plist.delete_from_key(94)
+        print(plist)
+
+        self.assertEqual(plist._first.player._name, "ava")
+
+    def test_del_key_last(self):
+        plist = PlayerList()
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=94, _name="bob"))
+        print(plist)
+        plist.delete_from_key(94)
+        print(plist)
+
+        self.assertEqual(plist._last.player._name, "ava")
+
+    def test_del_key_middle(self):
+        plist = PlayerList()
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=94, _name="bob"))
+        plist.insert_last(Player(_uid=693, _name="steve"))
+        print(plist)
+        plist.delete_from_key(94)
+        print(plist)
+        print(plist._last.display())
+        print(plist._first.display())
+
+        self.assertEqual(plist._first.next.player._name, "steve")
