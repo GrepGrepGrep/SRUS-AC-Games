@@ -77,3 +77,20 @@ class PlayerList:
                     next_1.previous = previous
                 return
             current = current.next
+
+    def display(self, forward=True):
+
+        if forward:
+            print(self.__str__())
+            return
+
+        # if backward
+
+        buf = ""
+        current = self._last
+        while current is not None:
+
+            buf += " " + str(current.player._name)
+            current = current.previous
+
+        print("items: [{} ]".format(buf))

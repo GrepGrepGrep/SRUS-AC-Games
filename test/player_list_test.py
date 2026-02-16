@@ -103,3 +103,14 @@ class TestPlayerListMethods(unittest.TestCase):
         print(plist._first.display())
 
         self.assertEqual(plist._first.next.player._name, "steve")
+
+    def test_display(self):
+        plist = PlayerList()
+        plist.insert_last(Player(_uid=3439, _name="ava"))
+        plist.insert_last(Player(_uid=94, _name="bob"))
+        plist.insert_last(Player(_uid=693, _name="steve"))
+        print("forwards")
+        plist.display()
+        print("backwards")
+        plist.display(forward =False)
+
