@@ -25,7 +25,6 @@ class PlayerList:
 
     def insert_last(self, new_player=Player):
         player_node = PlayerNode(new_player)
-
         if self._first is None:
             self._first = player_node
             self._last = player_node
@@ -34,6 +33,24 @@ class PlayerList:
         self._last.next = player_node
         player_node.previous = self._last
         self._last = player_node
+
+
+    def delete_first(self):
+        if self._first is None:
+            return
+
+        self._first = self._first.next
+        self._first.previous = None
+
+    def delete_last(self):
+        if self._first is None:
+            return
+
+        last = self._last.previous
+        last.next = None
+        self._last = last
+
+
 
     def __str__(self):
         buf = "items: ["
@@ -45,3 +62,4 @@ class PlayerList:
             current = current.next
         buf += " ]"
         return buf
+
