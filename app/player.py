@@ -6,4 +6,4 @@ class Player:
 
 
     def __str__(self):
-        print("UID: {} | name: {}" .format(self._uid, self._name))
+        return "UID: {} | name: {}" .format(self._uid, self._name)
