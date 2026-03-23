@@ -28,6 +28,15 @@ class PlayerHashMap:
             len += 1
         return buf
 
+    def display(self):
+        buf = ""
+        len = 0
+        for x in self.table:
+            if x.is_empty():
+                continue
+            buf += "\n{1} {0}".format(x, len)
+            len += 1
+        return buf
 
     def hash(self, key: int):
         return key % 10
@@ -55,7 +64,7 @@ class PlayerHashMap:
         for table in self.table:
             num += table.count()
         return num
-
+#
 # print("insert users")
 # # key exceed index
 # waa = PlayerHashMap(10)
@@ -75,3 +84,5 @@ class PlayerHashMap:
 # print(waa.get(11))
 #
 # print(waa.len())
+#
+# print(waa.display())
