@@ -3,15 +3,15 @@ from app.player_node import PlayerNode
 
 
 class PlayerList:
+    _first: PlayerNode = None
+    _last: PlayerNode = None
 
-    def __init__(self):
-        self._first = None
-        self._last = None
+
 
     def is_empty(self):
         return self._first is None
 
-    def insert_first(self, new_player=Player):
+    def insert_first(self, new_player: Player):
         player_node = PlayerNode(new_player)
 
         if self.is_empty():
@@ -23,7 +23,7 @@ class PlayerList:
         self._first.previous = player_node
         self._first = player_node
 
-    def insert_last(self, new_player=Player):
+    def insert_last(self, new_player: Player):
         player_node = PlayerNode(new_player)
         if self._first is None:
             self._first = player_node
@@ -60,7 +60,7 @@ class PlayerList:
         buf += " ]"
         return buf
 
-    def delete_from_key(self, key):
+    def delete_from_key(self, key: int):
         current = self._first
 
         while current is not None:
@@ -78,6 +78,9 @@ class PlayerList:
                 return
             current = current.next
 
+
+
+
     def display(self, forward=True):
 
         if forward:
@@ -94,3 +97,25 @@ class PlayerList:
             current = current.previous
 
         print("items: [{} ]".format(buf))
+
+    def get(self, key: int):
+        current = self._last
+        while current is not None and current.player._uid != key:
+            current = current.previous
+        return current
+
+
+    def count(self):
+
+
+        num = 0
+        current = self._last
+        while current is not None:
+
+            num +=1
+            current = current.previous
+
+
+        return num
+
+
