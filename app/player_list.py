@@ -6,8 +6,6 @@ class PlayerList:
     _first: PlayerNode = None
     _last: PlayerNode = None
 
-
-
     def is_empty(self):
         return self._first is None
 
@@ -39,7 +37,8 @@ class PlayerList:
             return
 
         self._first = self._first.next
-        self._first.previous = None
+        if self._first is not None:
+            self._first.previous = None
 
     def delete_last(self):
         if self._first is None:
@@ -61,14 +60,19 @@ class PlayerList:
         return buf
 
     def delete_from_key(self, key: int):
+
         current = self._first
 
         while current is not None:
             if current.player._uid == key:
+                if current.next is None and current.previous is None:
+                    self._first = None
+                    self._last = None
+                    return
                 if current == self._first:
                     self.delete_first()
                 elif current == self._last:
-                    self.delete_last()
+                    self.delete_first()
                 else:
                     previous = current.previous
                     next_1 = current.next
@@ -77,9 +81,6 @@ class PlayerList:
                     next_1.previous = previous
                 return
             current = current.next
-
-
-
 
     def display(self, forward=True):
 
@@ -92,7 +93,6 @@ class PlayerList:
         buf = ""
         current = self._last
         while current is not None:
-
             buf += " " + str(current.player._name)
             current = current.previous
 
@@ -104,18 +104,12 @@ class PlayerList:
             current = current.previous
         return current
 
-
     def count(self):
 
-
+        # print(self._last.display())
         num = 0
         current = self._last
         while current is not None:
-
-            num +=1
+            num += 1
             current = current.previous
-
-
         return num
-
-

@@ -16,6 +16,7 @@ class PlayerHashMap:
 
     def __init__(self, size: int):
         self.size = size
+        self.table = []
         for x in range(0, size):
             self.table.append(PlayerList())
 
@@ -38,12 +39,14 @@ class PlayerHashMap:
         return buf
 
     def hash(self, key: int):
-        return key % 10
+        return key % self.size
 
     def put(self, player: Player):
 
         if self.get(player._uid) is not None:
             self.remove(player._uid)
+
+        # print(self.hash(player._uid))
 
         self.table[self.hash(player._uid)].insert_last(player)
 
@@ -52,11 +55,12 @@ class PlayerHashMap:
         return self.table[self.hash(key)].get(key)
 
     def remove(self, key: int):
+        print(self.hash(key))
+        print(self.table[self.hash(key)])
         self.table[self.hash(key)].delete_from_key(key)
 
     def len(self):
         num = 0
-
         for table in self.table:
             num += table.count()
         return num
