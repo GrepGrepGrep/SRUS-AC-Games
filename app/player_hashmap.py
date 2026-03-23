@@ -6,8 +6,7 @@ from app.player_list import PlayerList
 from app.player import Player
 
 
-# WIP: key equals index
-# todo: implement hash function
+
 
 class PlayerHashMap:
     # SIZE: int = 10
