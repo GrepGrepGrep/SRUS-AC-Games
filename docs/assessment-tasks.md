@@ -97,14 +97,27 @@ def test_sort_players(self):
 What was the outcome of running the above unit test, copy paste the output **for just this particular test** below:
 
 ```text
-Copy the traceback you got when you ran the test here.
+
+Error
+Traceback (most recent call last):
+  File "/home/kaiaxc/Documents/tafe/adv programming/AT3/SRUS-AC-Games/test/player_test.py", line 35, in test_sort_players
+    sorted_players = sorted(players)
+TypeError: '<' not supported between instances of 'Player' and 'Player'
+
+
+
+Ran 1 test in 0.003s
+
+FAILED (errors=1)
+
+Process finished with exit code 1
 ```
 
 ### 4.3. Success criteria
 
-- [ ] Unit test added to `test_player.py`
-- [ ] Unit test output provided
-- [ ] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
+- [x] Unit test added to `test_player.py`
+- [x] Unit test output provided
+- [x] Unit test output reflects the error in `sorted(players)` (if you are getting another error read the instructions CAREFULLY)
 
 #### 4.3.1. Question: What dunder method is required for Python to sort players?
 
@@ -112,10 +125,11 @@ The tests checks that calling sorted on a list of players will sort them by scor
 
 What is the **only** magic method that must be implemented in the player class for the `sorted` function to succeed?
 
+
+
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
-> Answer Here
-> Yes, here - instead of this text!
+> The `gt`/greater than method (or trait)
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
 
@@ -136,7 +150,14 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+
+
+Ran 1 test in 0.001s
+
+OK
+
+Process finished with exit code 0
+
 ```
 
 - Implement the appropriate magic method in the Player class and ensure you pass this test

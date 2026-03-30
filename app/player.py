@@ -25,7 +25,5 @@ class Player:
     def __str__(self):
         return "UID: {} | name: {}".format(self._uid, self._name)
 
-
-
-player = Player(3, "", _score=2)
-player._score = -2
+    def __gt__(self, other):
+        return self._score > other._score
