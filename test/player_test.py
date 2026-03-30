@@ -24,3 +24,18 @@ class TestPlayerMethods(unittest.TestCase):
         player = Player(_name=name, _uid=uid)
 
         self.assertEqual(player._uid, uid)
+
+    def test_sort_players(self):
+        players = [Player(_name="Alice", _uid='01', _score=10), Player(_name="Bob", _uid='02', _score=5),
+                   Player(_name="Charlie", _uid='03', _score=15)]
+        # note: ensure initialization code is valid for **your** implementation.
+        # For example, is your parameter called uid? is the first parameter name?
+
+        # do **not** change the following code:
+        sorted_players = sorted(players)
+
+        # players must be sorted by score as shown here:
+        manually_sorted_players = [Player(_name="Bob", _uid='02', _score=5), Player(_name="Alice", _uid='01', score=10),
+                                   Player(_name="Charlie", _uid='03', _score=15)]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
