@@ -31,3 +31,17 @@ class Player:
 
     def __gt__(self, other):
         return self._score > other._score
+
+    def sort_quickly(self, arr: list[Player]):
+        if len(arr) <= 1:
+            return arr
+        pivot = arr[0]
+        left = []
+        right = []
+        for x in arr[1:]:
+            if x < pivot:
+                right.append(x)
+            else:
+
+                left.append(x)
+        return self.sort_quickly(left) + [pivot] + self.sort_quickly(right)

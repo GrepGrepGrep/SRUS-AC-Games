@@ -264,7 +264,14 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> The sorting algorithm above is quicksort. 
+> it has an average time complexity of O(n × log n). 
+> this is much faster than something like bubble sort, which from testing
+> took 169.08 times longer (for an array of 10000 items)
+
+> 0.025565147399902344 seconds
+> 4.322762489318848 seconds
+
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -279,16 +286,25 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+    def test_score_sort(self):
+        players = [Player(_name="Alice", _uid='01', _score=10), Player(_name="Bob", _uid='02', _score=5),
+                   Player(_name="Charlie", _uid='03', _score=15)]
+
+        algo_sorted = Player("0", "NULL").sort_quickly(arr=players)
+
+        sort = sorted(players)
+        sort.reverse()
+        assert_equal(sort, algo_sorted)
+
 ```
 
 #### 5.2.3. Success criteria
 
-- [ ] Custom sorting algorithm implemented in the `Player` class as `classmethod`
-- [ ] Custom sorting algorithm sorts in descending order
-- [ ] Custom sorting algorithm compares players using their score (via the rich comparison operators)
-- [ ] Custom sorting algorithm tested in `test_player.py` and tests passed
-- [ ] At least one commit capturing the above changes
+- [x] Custom sorting algorithm implemented in the `Player` class as `classmethod`
+- [x] Custom sorting algorithm sorts in descending order
+- [x] Custom sorting algorithm compares players using their score (via the rich comparison operators)
+- [x] Custom sorting algorithm tested in `test_player.py` and tests passed
+- [x] At least one commit capturing the above changes
 
 ### 5.3. Test your custom sorting algorithm at scale
 
