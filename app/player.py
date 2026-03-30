@@ -25,5 +25,9 @@ class Player:
     def __str__(self):
         return "UID: {} | name: {}".format(self._uid, self._name)
 
+    def __eq__(self, other):
+        return self._uid == other._uid
+
+
     def __gt__(self, other):
         return self._score > other._score
