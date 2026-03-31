@@ -1,11 +1,12 @@
 # https://docs.python.org/3/library/unittest.html
-
+import random
+import time
 import unittest
 
+from more_itertools.more import is_sorted
 from numpy.ma.testutils import assert_equal
 
 from app.player import Player
-from app.player_list import PlayerList
 
 
 class TestPlayerMethods(unittest.TestCase):
@@ -58,9 +59,8 @@ class TestPlayerMethods(unittest.TestCase):
 
         algo_sorted = Player("0", "NULL").sort_quickly(arr=players)
 
-        sort = sorted(players)
-        sort.reverse()
-        assert_equal(sort, algo_sorted)
+
+        self.assertTrue(is_sorted(algo_sorted, reverse=True))
 
     def test_sort_against_std(self):
         import random
@@ -69,4 +69,77 @@ class TestPlayerMethods(unittest.TestCase):
 
         sort = sorted(players)
         sort.reverse()
-        assert_equal(sort, Player("0", "NULL").sort_quickly(arr=players))
+
+        self.assertTrue(is_sorted(sort, reverse=True))
+        self.assertTrue(is_sorted(Player("0", "NULL").sort_quickly(arr=players), reverse=True))
+
+    def test_already_sorted(self):
+        import random
+
+        players = [Player(_name=f"Player {i}", _uid=f"{i:03}", _score=random.randint(0, 1000)) for i in range(1000)]
+
+        my_sorted = Player("0", "NULL").sort_quickly(arr=players)
+
+
+        self.assertTrue(is_sorted(my_sorted, reverse=True))
+
+    def test_drag_race_pivot(self):
+        import sys
+        sys.setrecursionlimit(1500)
+
+        def sort_quickly(arr: list[Player]):
+            if len(arr) <= 1:
+                return arr
+            pivot = arr[0]
+            left = []
+            right = []
+            for x in arr[1:]:
+                if x < pivot:
+                    right.append(x)
+                else:
+                    left.append(x)
+            return sort_quickly(left) + [pivot] + sort_quickly(right)
+
+        def sort_quickly_middle(arr: list[Player]):
+            if len(arr) <= 1:
+                return arr
+            pivot = arr[len(arr) // 2]
+            left = []
+            right = []
+            for x in arr[1:]:
+                if x < pivot:
+                    right.append(x)
+                else:
+                    left.append(x)
+            return sort_quickly(left) + [pivot] + sort_quickly(right)
+
+        players = [Player(_name=f"Player {i}", _uid=f"{i:03}", _score=random.randint(0, 1000)) for i in range(1000)]
+        players_sorted = sorted(players)
+
+        print("unsorted | middle")
+        for x in range(0, 3):
+            start = time.time()
+            sort_quickly_middle(players)
+            end = time.time()
+            print(end - start)
+
+        print("unsorted | start")
+        for x in range(0, 3):
+            start = time.time()
+            sort_quickly(players)
+            end = time.time()
+            print(end - start)
+
+        print("sorted | middle")
+        for x in range(0, 3):
+            start = time.time()
+            sort_quickly_middle(players_sorted)
+            end = time.time()
+            print(end - start)
+
+        print("sorted | start")
+        for x in range(0, 3):
+            start = time.time()
+            sort_quickly(players_sorted)
+            end = time.time()
+            print(end - start)

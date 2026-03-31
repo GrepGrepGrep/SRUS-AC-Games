@@ -354,7 +354,13 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+RecursionError: maximum recursion depth exceeded
+
+
+
+Ran 1 test in 0.490s
+
+FAILED (errors=1)
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -363,49 +369,64 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
-
+> The pivot index is the start of the array. From testing, moving the pivot 
+> to the middle made no difference in performance for an unsorted array. But huge 
+> improvements for sorted arrays.
+> 
+```text
+Result from the test
+unsorted | middle
+0.0019762516021728516
+0.002079486846923828
+0.0019943714141845703
+unsorted | start
+0.0022454261779785156
+0.002096414566040039
+0.0021638870239257812
+sorted | middle
+0.05747580528259277
+0.060558319091796875
+0.05992627143859863
+sorted | start (note: crashed due to thread error)
+0.12017321586608887
+0.1314537525177002
+```
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+    # change the pivot to be the centre of the array
+    pivot = arr[len(arr) // 2]
 ```
 
 #### 5.3.5. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case passes only when changes above are added
-- [ ] Explanation of why the algorithm fails on presorted values
-- [ ] Fix to the algorithm provided
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case passes only when changes above are added
+- [x] Explanation of why the algorithm fails on presorted values
+- [x] Fix to the algorithm provided
+- [x] At least one commit capturing the above changes
 
 ## 6. Task: Authenticity of in class work
 
 Complete the following snippet before you submit:
 
 ```text
-I, <name and student number>, completed this work in class <room number>, on <date>, under the supervision of <assessor's name>.
+I, Ava Collett 20168733, completed this work in class 6, on 30/03/26, under the supervision of Alexander Schmidt.
 ```
 
 Or (if not completed in class):
 
-```text
-I, <name and student number>, completed this work outside of the scheduled hours. I emailed <assessors name>, on <date>, along with my documented reason for non-attendance, and have scheduled a time to meet to discuss my work.
 
-I understand that until I meet my assessor to confirm that this work is a valid and true representation of my abilities to write and debug a sorting algorithm in Python, this submission cannot be considered complete.
-
-```
 
 ## 7. Submit your work
 
-- [ ] Ensure all tasks are complete and tests pass
-- [ ] Answer all questions in your own words
-- [ ] Complete the statement of authenticity
-- [ ] Include `.git` showing each task committed (you must show at least 5 commits)
-- [ ] Annotated tag of your last commit as `por3-finish`
-- [ ] Push your changes to your GitHub repository
-- [ ] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
+- [x] Ensure all tasks are complete and tests pass
+- [x] Answer all questions in your own words
+- [x] Complete the statement of authenticity
+- [x] Include `.git` showing each task committed (you must show at least 5 commits)
+- [x] Annotated tag of your last commit as `por3-finish`
+- [x] Push your changes to your GitHub repository
+- [x] Submit a zip of your repository to the LMS (ensure you do not add the `.venv` or `__pycache__` folders)
 
 ---
 End of assessment task
