@@ -61,3 +61,12 @@ class TestPlayerMethods(unittest.TestCase):
         sort = sorted(players)
         sort.reverse()
         assert_equal(sort, algo_sorted)
+
+    def test_sort_against_std(self):
+        import random
+
+        players = [Player(_name=f"Player {i}", _uid=f"{i:03}", _score=random.randint(0, 1000)) for i in range(1000)]
+
+        sort = sorted(players)
+        sort.reverse()
+        assert_equal(sort, Player("0", "NULL").sort_quickly(arr=players))

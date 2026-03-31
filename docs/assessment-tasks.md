@@ -326,16 +326,22 @@ Include your test case below:
 
 ```python
 
-# YOUR TEST CASE HERE
+    def test_sort_against_std(self):
+        import random
 
+        players = [Player(_name=f"Player {i}", _uid=f"{i:03}", _score=random.randint(0, 1000)) for i in range(1000)]
+
+        sort = sorted(players)
+        sort.reverse()
+        assert_equal(sort, Player("0", "NULL").sort_quickly(arr=players))
 ```
 
 #### 5.3.2. Success criteria
 
-- [ ] Test case added to `test_player.py`
-- [ ] Test case sorts 1000 players correctly when compared to `sorted` function
-- [ ] Test case passes when run against the submitted code
-- [ ] At least one commit capturing the above changes
+- [x] Test case added to `test_player.py`
+- [x] Test case sorts 1000 players correctly when compared to `sorted` function
+- [x] Test case passes when run against the submitted code
+- [x] At least one commit capturing the above changes
 
 #### 5.3.3. Task: Testing sorting sorted players
 
