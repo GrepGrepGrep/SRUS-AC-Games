@@ -31,3 +31,4 @@ class PlayerBNode:
     @right.setter
     def right(self, value: Player):
         self.__right = value
+
