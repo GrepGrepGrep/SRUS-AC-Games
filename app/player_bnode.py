@@ -5,7 +5,9 @@ class PlayerBNode:
 
     def __init__(self, root: Player):
         self.__root = root
+        # type PlayerBNode
         self.__left = None
+        # type PlayerBNode
         self.__right = None
 
     @property
