@@ -52,3 +52,16 @@ class TestPlayerMethods(unittest.TestCase):
         b = self.data()
         self.assertTrue(b.search("3"))
         self.assertFalse(b.search("WOMP"))
+
+    def test_optimise(self):
+        b = PlayerBST()
+        b.value = Player("0", "100", 5)
+        b.insert(Player("0", "2", 5))
+        b.insert(Player("0", "1", 1))
+        b.insert(Player("0", "4", 4))
+        b.insert(Player("0", "5", 1))
+
+        self.assertEqual(b.value.root._name, "100")
+        b.to_list()
+
+        self.assertEqual(b.value.root._name, "4")
