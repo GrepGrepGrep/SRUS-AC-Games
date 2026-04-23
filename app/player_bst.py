@@ -54,17 +54,25 @@ class PlayerBST:
             else:
                 self.__search_inner(name, node.right)
 
-    def search(self, name: str)-> bool:
+    def search(self, name: str) -> bool:
         return self.__search_inner(name, self.value)
 
+    def to_list(self):
 
+        items = []
+        self.__through(self.value, items)
+        items.sort()
+        list_new = PlayerBST()
+        list_new.value = items.pop(len(items) // 2)
+        for item in items:
+            list_new.insert(item)
 
+        self.value = list_new.value.root
 
-b = PlayerBST()
-b.value = Player("0", "3", 5)
-b.insert(Player("0", "2", 5))
-b.insert(Player("0", "1", 1))
-b.insert(Player("0", "4", 4))
-b.insert(Player("0", "5", 1))
+    def __through(self, node: PlayerBNode, items: list):
 
-b.search("5")
+        if node.left is not None:
+            self.__through(node.left, items)
+        if node.right:
+            self.__through(node.right, items)
+        items.append(node.root)

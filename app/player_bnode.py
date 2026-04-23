@@ -3,12 +3,17 @@ from app.player import Player
 
 class PlayerBNode:
 
+
+
     def __init__(self, root: Player):
         self.__root = root
         # type PlayerBNode
         self.__left = None
         # type PlayerBNode
         self.__right = None
+
+    def __lt__(self, other):
+        return self.root._name < other.root._name
 
     @property
     def root(self):
